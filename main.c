@@ -1,22 +1,22 @@
 #define FUSE_USE_VERSION 31
 
+#include <errno.h>
 #include <fuse3/fuse.h>
-#include <fuse3/fuse_opt.h>
 #include <stdio.h>
 
+static int fs_gettatr(const char *path, struct stat *st,
+                      struct fuse_file_info *fi) {
+  printf("not implemented\n");
+  return -ENOSYS;
+}
+
 int main(int argc, char *argv[]) {
-  struct fuse_args args = FUSE_ARGS_INIT(argc, argv);
 
-  /* Parse options */
-  void *data = NULL;
-  struct fuse_opt *opts = NULL;
-  fuse_opt_proc_t proc = NULL;
-
-  if (fuse_opt_parse(&args, data, opts, proc) == -1) {
-    printf("failed to parse fuse args");
-    return 1;
+  const struct fuse_operations fuse_op = {
+      .getattr = fs_gettatr,
   };
 
-  printf("Hello");
+  fuse_main(argc, argv, &fuse_op, NULL);
+
   return 0;
 }

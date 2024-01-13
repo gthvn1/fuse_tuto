@@ -4,7 +4,7 @@
 - Build
     - `make`
 - Run
-    - `./main`
+    - `./main -d tuto_fs/`
 - Format
     - `make fmt`
 
