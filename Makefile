@@ -1,7 +1,7 @@
 CFLAGS=`pkg-config fuse3 --cflags --libs`
 
 main: main.c
-	$(CC) -Wall $^ $(CFLAGS) -o $@
+	$(CC) -pedantic -Wall $^ $(CFLAGS) -o $@
 
 fmt:
 	clang-format -i main.c
